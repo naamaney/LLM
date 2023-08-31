@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 openai_api_key = os.getenv('OPENAI_API_KEY')
-llm = ChatOpenAI(temperature=0, openai_api_key=openai_api_key, model='gpt-4')
+llm = ChatOpenAI(temperature=0.9, presencePenalty=0.6, openai_api_key=openai_api_key, model='gpt-4')
 
 def generate_response(message):
     output = llm.predict(message)
@@ -18,7 +18,8 @@ def main():
         page_title="GPT-4", page_icon=":bird:")
 
     st.header("Well Well Well :bird:")
-    message = st.text_area("message...")
+    message = "Tu es un expert en marketing sur Youtube.\n"
+    message += st.text_area("message...")
 
     if message:
         st.write("Generating best message...")
